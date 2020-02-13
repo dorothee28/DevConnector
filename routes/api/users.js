@@ -2,7 +2,10 @@ const express = require('express');
 const router = express.Router();
 const gravatar = require('gravatar')
 const bcryt = require('bcryptjs');
-const { check, validationResult } = require('express-validator/check');
+const jwt = require('jsonwebtoken');
+const config = require('config');
+// const { check, validationResult } = require('express-validator/check');
+const { check, validationResult } = require('express-validator');
 
 // local loader
 
@@ -33,10 +36,11 @@ async(req, res) => {
 
     try {
         let user = await User.findOne({ email });
-
            // See if user exists
         if (user) {
-            res.status(400).json({ errors: [{ msg: 'User already exists' }] }); 
+            return res
+            .status(400)
+            .json({ errors: [{ msg: 'User already exists' }] }); 
         } 
     // Get users garvatar
     const avatar = gravatar.url(email, {
@@ -60,7 +64,23 @@ async(req, res) => {
 
     // Return jsonWebtoken
 
-        res.send('User registered')
+    // get the payload who include id
+    const payload = {
+        user: {
+            id: user.id
+        }
+    }
+// sign token
+    jwt.sign(payload, 
+        config.get('jwtSecret'),
+         { expiresIn: 360000},  //expiration token recommanded
+        (err, token) => {
+            if(err) throw err;
+            res.json({ token })
+
+        });
+
+        // res.send('User registered')
     } catch(err) {
 
         console.error(err.message);
