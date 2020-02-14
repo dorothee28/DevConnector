@@ -1,5 +1,7 @@
 {
     "mongoURI": "mongodb+srv://dorothy:Montagne19@devconnector-w36wm.mongodb.net/test?retryWrites=true&w=majority",
-    "jwtSecret": "mysecrettoken"
+    "jwtSecret": "mysecrettoken",
+    "githubClientId": "c3df3eff8406cecb830e",
+    "githubSecret": "cac98950ac368f2cb96ebbf0b6f00937669cbb15"
 
 }
