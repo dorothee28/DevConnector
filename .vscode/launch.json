@@ -1,4 +1,6 @@
 {
+    //  "program": "${workspaceFolder}\\server.js"
+    
     // Utilisez IntelliSense pour en savoir plus sur les attributs possibles.
     // Pointez pour afficher la description des attributs existants.
     // Pour plus d'informations, visitez : https://go.microsoft.com/fwlink/?linkid=830387
@@ -10,8 +12,8 @@
             "name": "Lancer le programme",
             "skipFiles": [
                 "<node_internals>/**"
-            ],
-            "program": "${workspaceFolder}\\server.js"
+            ]
+           
         }
     ]
 }
